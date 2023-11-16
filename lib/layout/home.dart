@@ -4,8 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:note_app/cubits/note-Cubit/Notes_states.dart';
 import 'package:note_app/cubits/note-Cubit/notes_cubit.dart';
 import 'package:note_app/layout/bottom_sheet.dart';
-import 'package:note_app/layout/my_app_bar.dart';
 import 'package:note_app/layout/note_item.dart';
+import 'package:note_app/shared/components/my_app_bar.dart';
 import '../shared/styles/style_constants.dart';
 
 class Home extends StatelessWidget {
@@ -21,7 +21,11 @@ class Home extends StatelessWidget {
           body: CustomScrollView(
             physics: BouncingScrollPhysics(),
             slivers: [
-              MyAppBar(),
+              MyAppBar(
+                title: 'My notes',
+                icon: Icons.search_rounded,
+                iconAction: () {},
+              ),
               SliverToBoxAdapter(
                 child: ListView.separated(
                   padding: EdgeInsets.symmetric(
@@ -61,3 +65,4 @@ class Home extends StatelessWidget {
     );
   }
 }
+//

@@ -17,12 +17,14 @@ ThemeData lightTheme = ThemeData(
 );
 
 // app bar theme *******************************************
-AppBarTheme appBarTheme = AppBarTheme(
-    elevation: 0,
-    backgroundColor: Colors.transparent,
-    systemOverlayStyle: SystemUiOverlayStyle(
-      statusBarColor: Colors.transparent,
-    ));
+AppBarTheme appBarTheme = const AppBarTheme(
+  elevation: 0,
+  backgroundColor: Colors.transparent,
+  systemOverlayStyle: SystemUiOverlayStyle(
+    statusBarColor: Colors.transparent,
+    systemNavigationBarColor: Color(0xff060E18),
+  ),
+);
 // app bar theme *******************************************
 
 // text theme *******************************************
@@ -108,7 +110,7 @@ ElevatedButtonThemeData elevatedButtonTheme = ElevatedButtonThemeData(
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(StyleConstants.buttonBorderRadius).w,
     ),
-    foregroundColor: Color(0xff060E18),
+    foregroundColor: Color(0xffF0F0F0),
     backgroundColor: Colors.transparent,
     elevation: 0,
     shadowColor: Colors.transparent,
@@ -117,7 +119,7 @@ ElevatedButtonThemeData elevatedButtonTheme = ElevatedButtonThemeData(
       fontSize: 16.sp,
       fontFamily: 'Montserrat',
       fontWeight: FontWeight.w700,
-      color: Color(0xff060E18),
+      color: Color(0xffF0F0F0),
     ),
   ),
 );
@@ -128,14 +130,14 @@ BottomSheetThemeData bottomSheetTheme = BottomSheetThemeData(
   modalBarrierColor: Colors.black.withOpacity(0.7),
 );
 
-FloatingActionButtonThemeData floatingActionButtonTheme = FloatingActionButtonThemeData(
-  backgroundColor: Color(0xff060E18).withOpacity(0.8),
+FloatingActionButtonThemeData floatingActionButtonTheme =
+    FloatingActionButtonThemeData(
+  backgroundColor: Color(0xff060E18).withOpacity(0.7),
   shape: RoundedRectangleBorder(
     borderRadius: BorderRadius.circular(StyleConstants.buttonBorderRadius).w,
     side: BorderSide(
-      color: Colors.white,
+      color: Color(0xffF0F0F0),
       width: 1.5,
     ),
   ),
-
 );

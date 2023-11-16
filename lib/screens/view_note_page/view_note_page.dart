@@ -5,6 +5,7 @@ import 'package:note_app/cubits/note-Cubit/Notes_states.dart';
 import 'package:note_app/cubits/note-Cubit/notes_cubit.dart';
 import 'package:note_app/screens/edit_note_page/edit_note_page.dart';
 import 'package:note_app/screens/view_note_page/custom_app_bar.dart';
+import 'package:note_app/shared/components/my_app_bar.dart';
 import 'package:page_transition/page_transition.dart';
 
 import '../../shared/components/square_icon_button.dart';
@@ -21,7 +22,21 @@ class ViewNotePage extends StatelessWidget {
           body: CustomScrollView(
             physics: BouncingScrollPhysics(),
             slivers: [
-              NoteViewAppBar(),
+              MyAppBar(
+                title: 'Notey',
+                icon: Icons.edit,
+                iconAction: (){
+                  Navigator.push(
+                    context,
+                    PageTransition(
+                      child: EditNotePage(),
+                      type: PageTransitionType.rightToLeft,
+                    ),
+                  );
+                },
+                iconColor: Colors.tealAccent,
+                hasLeading: true,
+              ),
               SliverToBoxAdapter(
                 child: Stack(
                   children: [

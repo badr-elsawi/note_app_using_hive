@@ -55,13 +55,6 @@ class NoteViewAppBar extends StatelessWidget {
           ),
           child: SquareIconButton(
             onPressed: () {
-              Navigator.push(
-                context,
-                PageTransition(
-                  child: EditNotePage(),
-                  type: PageTransitionType.rightToLeft,
-                ),
-              );
             },
             icon: Icons.edit,
             forgroundColor: Colors.teal,

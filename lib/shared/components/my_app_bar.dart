@@ -3,18 +3,42 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:note_app/shared/components/square_icon_button.dart';
 
 class MyAppBar extends StatelessWidget {
-  const MyAppBar({super.key});
+  const MyAppBar({
+    super.key,
+    required this.title,
+    required this.icon,
+    required this.iconAction,
+    this.hasLeading = false,
+    this.iconColor = const Color(0xffF7F7F7),
+  });
+
+  final String title;
+  final IconData icon;
+  final Color iconColor;
+  final Function() iconAction;
+  final bool hasLeading;
 
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      backgroundColor: Color(0xff060E18),
+      backgroundColor: const Color(0xff060E18),
       elevation: 0,
       // collapsedHeight: 70.h,
       stretch: true,
       expandedHeight: 100.h,
       floating: true,
       pinned: true,
+      leading: hasLeading
+          ? IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: const Icon(
+                Icons.arrow_back_ios_rounded,
+                color: Color(0xffF7F7F7),
+              ),
+            )
+          : null,
       flexibleSpace: FlexibleSpaceBar(
         background: Container(
           decoration: BoxDecoration(
@@ -29,7 +53,7 @@ class MyAppBar extends StatelessWidget {
           ),
         ),
         title: Text(
-          'my notes',
+          title,
           style: Theme.of(context).textTheme.displayLarge,
         ),
         titlePadding: EdgeInsetsDirectional.only(
@@ -45,9 +69,9 @@ class MyAppBar extends StatelessWidget {
             vertical: 5.h,
           ).w,
           child: SquareIconButton(
-            onPressed: (){},
-            icon: Icons.search,
-            forgroundColor: Colors.white,
+            onPressed: iconAction,
+            icon: icon,
+            forgroundColor: iconColor,
             borderWidth: 0.5,
             size: 40.w,
           ),

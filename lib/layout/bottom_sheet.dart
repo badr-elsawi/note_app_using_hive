@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:note_app/shared/components/elevated_button.dart';
 
 import '../shared/components/text_input.dart';
 import '../shared/styles/style_constants.dart';
@@ -68,24 +69,9 @@ class Sheet extends StatelessWidget {
               ),
               SizedBox(height: 15.h),
               Center(
-                child: Container(
-                  decoration: ShapeDecoration(
-                    shape: StadiumBorder(),
-                    gradient: LinearGradient(
-                      begin: AlignmentDirectional.topStart,
-                      end: AlignmentDirectional.bottomEnd,
-                      colors: [
-                        Color(0xff109242).withOpacity(0.8),
-                        Color(0xff6BBA50).withOpacity(0.8),
-                        // Colors.transparent,
-                        // Colors.teal.withOpacity(0.1),
-                      ],
-                    ),
-                  ),
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    child: Text('Save'),
-                  ),
+                child: MyButton(
+                  title: 'Save',
+                  onPressed: () {},
                 ),
               ),
             ],

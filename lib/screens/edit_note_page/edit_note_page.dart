@@ -5,6 +5,7 @@ import 'package:note_app/cubits/note-Cubit/Notes_states.dart';
 import 'package:note_app/cubits/note-Cubit/notes_cubit.dart';
 import 'package:note_app/screens/edit_note_page/edite_note_input.dart';
 import 'package:note_app/screens/view_note_page/view_note_page.dart';
+import 'package:note_app/shared/components/elevated_button.dart';
 import 'package:note_app/shared/components/square_icon_button.dart';
 
 class EditNotePage extends StatelessWidget {
@@ -85,12 +86,9 @@ class EditNotePage extends StatelessWidget {
                   ),
                   SizedBox(height: 20.h),
                   Center(
-                    child: SquareIconButton(
-                      onPressed: () {},
-                      icon: Icons.save,
-                      forgroundColor: Colors.green,
-                      size: 60.w,
-                      borderWidth: 0.5,
+                    child: MyButton(
+                      title: 'Save',
+                      onPressed: (){},
                     ),
                   )
                 ],

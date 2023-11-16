@@ -64,7 +64,7 @@ class NoteItem extends StatelessWidget {
                   forgroundColor: Colors.lightGreen,
                   size: 40.w,
                   borderWidth: 0,
-                  backgroundColor: Colors.black.withOpacity(0.3),
+                  backgroundColor: Colors.black.withOpacity(0.5),
                 ),
                 SizedBox(width: 15.w),
                 SquareIconButton(
@@ -73,7 +73,7 @@ class NoteItem extends StatelessWidget {
                   forgroundColor: Colors.deepOrangeAccent,
                   size: 40.w,
                   borderWidth: 0,
-                  backgroundColor: Colors.black.withOpacity(0.3),
+                  backgroundColor: Colors.black.withOpacity(0.5),
                 ),
               ],
             ),
