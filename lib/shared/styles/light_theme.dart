@@ -99,6 +99,13 @@ InputDecorationTheme inputDecorationTheme = InputDecorationTheme(
       color: Colors.deepOrangeAccent,
     ),
   ),
+  focusedErrorBorder: OutlineInputBorder(
+    borderRadius: BorderRadius.circular(StyleConstants.buttonBorderRadius).w,
+    borderSide: BorderSide(
+      width: 1,
+      color: Colors.deepOrangeAccent,
+    ),
+  ),
 );
 
 ElevatedButtonThemeData elevatedButtonTheme = ElevatedButtonThemeData(

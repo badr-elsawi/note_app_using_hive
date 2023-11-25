@@ -63,32 +63,18 @@ class EditNotePage extends StatelessWidget {
                     errorMessage: '',
                     fontSize: 30,
                   ),
-                  Stack(
-                    children: [
-                      Container(
-                        child: Column(
-                          children: [
-                            for (int i = 1; i <= 10; i++)
-                              LineWidget(
-                                space: 35,
-                              ),
-                          ],
-                        ),
-                      ),
-                      EditTextInput(
-                        controller: note,
-                        hintText: 'enter note',
-                        errorMessage: '',
-                        fontSize: 20,
-                        maxLines: 10,
-                      ),
-                    ],
+                  EditTextInput(
+                    controller: note,
+                    hintText: 'enter note',
+                    errorMessage: '',
+                    fontSize: 20,
+                    maxLines: 10,
                   ),
                   SizedBox(height: 20.h),
                   Center(
                     child: MyButton(
                       title: 'Save',
-                      onPressed: (){},
+                      onPressed: () {},
                     ),
                   )
                 ],

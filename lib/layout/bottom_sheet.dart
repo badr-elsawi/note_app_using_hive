@@ -25,57 +25,10 @@ class Sheet extends StatelessWidget {
           start: StyleConstants.defaultHPadding.w,
           end: StyleConstants.defaultHPadding.w,
           top: 15.h,
-          bottom: MediaQuery.of(context).viewInsets.bottom > 5
-              ? MediaQuery.of(context).viewInsets.bottom
-              : 10.h,
+          bottom: MediaQuery.of(context).viewInsets.bottom,
         ),
         child: SingleChildScrollView(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Center(
-                child: Text(
-                  'Add a new note',
-                  style: Theme.of(context).textTheme.bodyLarge,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ),
-              SizedBox(height: 10.h),
-              Text(
-                'Title',
-                style: Theme.of(context).textTheme.bodySmall,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-              ),
-              SizedBox(height: 5.h),
-              TextInput(
-                hintText: 'enter note title',
-                errorMessage: 'this is bad',
-              ),
-              SizedBox(height: 10.h),
-              Text(
-                'Note',
-                style: Theme.of(context).textTheme.bodySmall,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-              ),
-              SizedBox(height: 5.h),
-              TextInput(
-                hintText: 'enter the note',
-                errorMessage: 'this is bad',
-                maxLines: 7,
-              ),
-              SizedBox(height: 15.h),
-              Center(
-                child: MyButton(
-                  title: 'Save',
-                  onPressed: () {},
-                ),
-              ),
-            ],
-          ),
+          child: MyForm(),
         ),
       ),
     );
@@ -91,4 +44,76 @@ Widget blury({
     filter: ImageFilter.blur(sigmaX: sigmaX, sigmaY: sigmaY),
     child: child,
   );
+}
+
+class MyForm extends StatefulWidget {
+  const MyForm({super.key});
+
+  @override
+  State<MyForm> createState() => _MyFormState();
+}
+
+class _MyFormState extends State<MyForm> {
+  var formKey = GlobalKey<FormState>();
+  var title = TextEditingController();
+  var note = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return Form(
+      key: formKey,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Center(
+            child: Text(
+              'Add a new note',
+              style: Theme.of(context).textTheme.bodyLarge,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
+          SizedBox(height: 10.h),
+          Text(
+            'Title',
+            style: Theme.of(context).textTheme.bodySmall,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
+          SizedBox(height: 5.h),
+          TextInput(
+            controller: title,
+            hintText: 'enter note title',
+            errorMessage: 'title is required',
+          ),
+          SizedBox(height: 10.h),
+          Text(
+            'Note',
+            style: Theme.of(context).textTheme.bodySmall,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
+          SizedBox(height: 5.h),
+          TextInput(
+            controller: note,
+            hintText: 'enter the note',
+            errorMessage: 'note is required',
+            maxLines: 7,
+          ),
+          SizedBox(height: 15.h),
+          Center(
+            child: MyButton(
+              title: 'Save',
+              onPressed: () {
+                if (formKey.currentState!.validate()) {
+                  print('**********************************');
+                }
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 }

@@ -5,9 +5,14 @@ import 'package:note_app/cubits/app_cubit/app_cubit.dart';
 import 'package:note_app/cubits/app_cubit/app_states.dart';
 import 'package:note_app/cubits/note-Cubit/notes_cubit.dart';
 import 'package:note_app/layout/home.dart';
+import 'package:note_app/shared/cash_helper/cash_helper.dart';
+import 'package:note_app/shared/constants.dart';
 import 'package:note_app/shared/styles/light_theme.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await CashServices.init();
+  await CashServices.openBox(box: noteBox);
   runApp(MyApp());
 }
 

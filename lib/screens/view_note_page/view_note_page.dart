@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:note_app/cubits/note-Cubit/Notes_states.dart';
 import 'package:note_app/cubits/note-Cubit/notes_cubit.dart';
 import 'package:note_app/screens/edit_note_page/edit_note_page.dart';
-import 'package:note_app/screens/view_note_page/custom_app_bar.dart';
 import 'package:note_app/shared/components/my_app_bar.dart';
 import 'package:page_transition/page_transition.dart';
 
@@ -93,7 +92,7 @@ class ViewNotePage extends StatelessWidget {
                         );
                       },
                       icon: Icons.edit,
-                      forgroundColor: Colors.teal,
+                      forgroundColor: Colors.tealAccent,
                       size: 50.w,
                       borderWidth: 0.5,
                     ),

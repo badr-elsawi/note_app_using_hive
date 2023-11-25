@@ -18,6 +18,7 @@ class Home extends StatelessWidget {
       builder: (context, state) {
         var cubit = NotesCubit.get(context);
         return Scaffold(
+          resizeToAvoidBottomInset: true,
           body: CustomScrollView(
             physics: BouncingScrollPhysics(),
             slivers: [
@@ -36,7 +37,7 @@ class Home extends StatelessWidget {
                   shrinkWrap: true,
                   itemBuilder: (context, index) => NoteItem(),
                   separatorBuilder: (context, index) => SizedBox(height: 20.h),
-                  itemCount: 3,
+                  itemCount: 10,
                 ),
               ),
             ],
