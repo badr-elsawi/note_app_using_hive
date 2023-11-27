@@ -46,7 +46,8 @@ class MyAppBar extends StatelessWidget {
               begin: AlignmentDirectional.topCenter,
               end: AlignmentDirectional.bottomCenter,
               colors: [
-                Colors.black.withOpacity(0.7),
+                // Colors.black.withOpacity(0.7),
+                Color(0xff109242).withOpacity(0.5),
                 Colors.transparent,
               ],
             ),
@@ -55,6 +56,8 @@ class MyAppBar extends StatelessWidget {
         title: Text(
           title,
           style: Theme.of(context).textTheme.displayLarge,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
         ),
         titlePadding: EdgeInsetsDirectional.only(
           start: 20.w,

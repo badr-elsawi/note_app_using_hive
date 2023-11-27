@@ -3,24 +3,26 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:note_app/cubits/note-Cubit/Notes_states.dart';
 import 'package:note_app/cubits/note-Cubit/notes_cubit.dart';
+import 'package:note_app/models/note_model.dart';
 import 'package:note_app/screens/edit_note_page/edite_note_input.dart';
 import 'package:note_app/screens/view_note_page/view_note_page.dart';
 import 'package:note_app/shared/components/elevated_button.dart';
 import 'package:note_app/shared/components/square_icon_button.dart';
 
 class EditNotePage extends StatelessWidget {
-  EditNotePage({super.key});
+  EditNotePage({super.key, required this.noteModel});
 
-  var title = TextEditingController(text: 'badrrr');
-  var note = TextEditingController(
-      text:
-          'jdjkkd dkkfk bkdodon\njcjkdjvndjvi djdidi djdujs ssuus \n fjdjdjdi jdjdjdjd jdj djdjd djdj \n jfk');
+  NoteModel noteModel;
+
+  late var title = TextEditingController(text: noteModel.title);
+  late var note = TextEditingController(text: noteModel.note);
 
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<NotesCubit, NotesStates>(
       listener: (context, state) {},
       builder: (context, state) {
+        var cubit = NotesCubit.get(context);
         return Scaffold(
           appBar: AppBar(
             leading: IconButton(
@@ -59,22 +61,29 @@ class EditNotePage extends StatelessWidget {
                 children: [
                   EditTextInput(
                     controller: title,
-                    hintText: 'tittt',
+                    hintText: noteModel.title,
                     errorMessage: '',
-                    fontSize: 30,
+                    isTitle: true,
                   ),
                   EditTextInput(
                     controller: note,
-                    hintText: 'enter note',
+                    hintText: noteModel.note,
                     errorMessage: '',
-                    fontSize: 20,
+                    isTitle: false,
                     maxLines: 10,
                   ),
-                  SizedBox(height: 20.h),
+                  SizedBox(height: 100.h),
                   Center(
                     child: MyButton(
                       title: 'Save',
-                      onPressed: () {},
+                      onPressed: () {
+                        cubit.editNote(
+                          model: noteModel,
+                          title: title.text,
+                          note: note.text,
+                        );
+                        Navigator.pop(context);
+                      },
                     ),
                   )
                 ],

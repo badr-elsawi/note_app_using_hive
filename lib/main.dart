@@ -1,19 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:note_app/cubits/app_cubit/app_cubit.dart';
 import 'package:note_app/cubits/app_cubit/app_states.dart';
+import 'package:note_app/cubits/bloc_observer.dart';
 import 'package:note_app/cubits/note-Cubit/notes_cubit.dart';
 import 'package:note_app/layout/home.dart';
+import 'package:note_app/models/note_model.dart';
 import 'package:note_app/shared/cash_helper/cash_helper.dart';
 import 'package:note_app/shared/constants.dart';
 import 'package:note_app/shared/styles/light_theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  Bloc.observer = SimpleBlocObserver();
   await CashServices.init();
-  await CashServices.openBox(box: noteBox);
-  runApp(MyApp());
+  CashServices.registerAdapter(NoteModelAdapter());
+  await CashServices.openBox<NoteModel>(box: noteBox);
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
+      .then((_) {
+    runApp(MyApp());
+  });
 }
 
 class MyApp extends StatelessWidget {
@@ -24,7 +32,8 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (BuildContext context) => AppCubit()),
-        BlocProvider(create: (BuildContext context) => NotesCubit()),
+        BlocProvider(
+            create: (BuildContext context) => NotesCubit()..getNotes()),
       ],
       child: BlocConsumer<AppCubit, AppStates>(
         listener: (context, state) {},

@@ -4,7 +4,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:note_app/cubits/note-Cubit/Notes_states.dart';
 import 'package:note_app/cubits/note-Cubit/notes_cubit.dart';
 import 'package:note_app/layout/bottom_sheet.dart';
+import 'package:note_app/layout/floating_action_button.dart';
 import 'package:note_app/layout/note_item.dart';
+import 'package:note_app/layout/notes_view.dart';
 import 'package:note_app/shared/components/my_app_bar.dart';
 import '../shared/styles/style_constants.dart';
 
@@ -18,7 +20,6 @@ class Home extends StatelessWidget {
       builder: (context, state) {
         var cubit = NotesCubit.get(context);
         return Scaffold(
-          resizeToAvoidBottomInset: true,
           body: CustomScrollView(
             physics: BouncingScrollPhysics(),
             slivers: [
@@ -27,43 +28,30 @@ class Home extends StatelessWidget {
                 icon: Icons.search_rounded,
                 iconAction: () {},
               ),
-              SliverToBoxAdapter(
-                child: ListView.separated(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 20.w,
-                    vertical: 20.h,
-                  ),
-                  primary: false,
-                  shrinkWrap: true,
-                  itemBuilder: (context, index) => NoteItem(),
-                  separatorBuilder: (context, index) => SizedBox(height: 20.h),
-                  itemCount: 10,
-                ),
-              ),
+              cubit.notes.length > 0
+                  ? NotesView(notes: cubit.notes)
+                  : EmptyImage(),
             ],
           ),
-          floatingActionButton: FloatingActionButton(
-            child: Icon(
-              cubit.bottomSheet ? Icons.arrow_downward_rounded : Icons.edit,
-            ),
-            onPressed: () {
-              showModalBottomSheet(
-                context: context,
-                isScrollControlled: true,
-                useSafeArea: true,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadiusDirectional.only(
-                    topStart: Radius.circular(StyleConstants.borderRadius).w,
-                    topEnd: Radius.circular(StyleConstants.borderRadius).w,
-                  ),
-                ),
-                builder: (context) => blury(child: Sheet()),
-              );
-            },
-          ),
+          floatingActionButton: SquareFloatinButton(),
         );
       },
     );
   }
 }
-//
+
+class EmptyImage extends StatelessWidget {
+  const EmptyImage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SliverToBoxAdapter(
+      child: Center(
+        child: Image(
+          width: 100.w,
+          image: AssetImage('assets/images/empty.png'),
+        ),
+      ),
+    );
+  }
+}

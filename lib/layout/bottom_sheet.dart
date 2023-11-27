@@ -1,7 +1,9 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:note_app/cubits/note-Cubit/notes_cubit.dart';
 import 'package:note_app/shared/components/elevated_button.dart';
 
 import '../shared/components/text_input.dart';
@@ -107,7 +109,13 @@ class _MyFormState extends State<MyForm> {
               title: 'Save',
               onPressed: () {
                 if (formKey.currentState!.validate()) {
-                  print('**********************************');
+                  BlocProvider.of<NotesCubit>(context)
+                    ..addNote(
+                      title: title.text,
+                      note: note.text,
+                    )
+                    ..getNotes();
+                  Navigator.pop(context);
                 }
               },
             ),

@@ -7,10 +7,16 @@ import 'package:note_app/screens/edit_note_page/edit_note_page.dart';
 import 'package:note_app/shared/components/my_app_bar.dart';
 import 'package:page_transition/page_transition.dart';
 
+import '../../models/note_model.dart';
 import '../../shared/components/square_icon_button.dart';
 
 class ViewNotePage extends StatelessWidget {
-  const ViewNotePage({super.key});
+  const ViewNotePage({
+    super.key,
+    required this.note,
+  });
+
+  final NoteModel note;
 
   @override
   Widget build(BuildContext context) {
@@ -22,13 +28,13 @@ class ViewNotePage extends StatelessWidget {
             physics: BouncingScrollPhysics(),
             slivers: [
               MyAppBar(
-                title: 'Notey',
+                title: note.title,
                 icon: Icons.edit,
-                iconAction: (){
+                iconAction: () {
                   Navigator.push(
                     context,
                     PageTransition(
-                      child: EditNotePage(),
+                      child: EditNotePage(noteModel: note),
                       type: PageTransitionType.rightToLeft,
                     ),
                   );
@@ -56,7 +62,7 @@ class ViewNotePage extends StatelessWidget {
                       padding:
                           EdgeInsetsDirectional.symmetric(horizontal: 20.w),
                       child: Text(
-                        'data ffkf fkflf fkflld dldld fldfldld dldld;d fldl;d fkflfl hdhhf fbnfbfhf fhfjjf fjdjdi dhdjdjd dhdh jedjedj jdked njdjd fnfjdjde dnjdj djdjidr fnfjf djdkkd fnfjfjr fjfjkdk',
+                        note.note,
                         style: Theme.of(context).textTheme.bodyMedium!.merge(
                               const TextStyle(
                                 height: 1.5,
@@ -86,7 +92,7 @@ class ViewNotePage extends StatelessWidget {
                         Navigator.push(
                           context,
                           PageTransition(
-                            child: EditNotePage(),
+                            child: EditNotePage(noteModel: note,),
                             type: PageTransitionType.rightToLeft,
                           ),
                         );

@@ -8,31 +8,41 @@ class EditTextInput extends StatelessWidget {
     required this.hintText,
     required this.errorMessage,
     this.maxLines = 1,
-    this.fontSize = 20,
+    this.isTitle = false,
   });
 
   TextEditingController controller;
   int maxLines;
   String hintText;
   String errorMessage;
-  double fontSize;
+  bool isTitle;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       controller: controller,
       maxLines: maxLines,
-      style: Theme.of(context).textTheme.displayMedium!.merge(
-            TextStyle(
-              fontSize: fontSize.sp,
-              height: 1.4.h
-            ),
-          ),
+      style: isTitle
+          ? Theme.of(context).textTheme.displayLarge!.merge(
+                TextStyle(
+                  height: 1.5,
+                  fontSize: 34.sp,
+                  fontWeight: FontWeight.w600,
+                ),
+              )
+          : Theme.of(context).textTheme.bodyMedium!.merge(
+                const TextStyle(
+                  height: 1.5,
+                  // fontSize: 17.sp,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
       validator: (value) {
         if (value!.isNotEmpty) {
           return errorMessage;
         }
       },
+
       decoration: InputDecoration(
         hintText: hintText,
         border: InputBorder.none,
